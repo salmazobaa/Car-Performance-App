@@ -1,6 +1,6 @@
 class Vehicle:
 
-    def __init__(self, model, weight):
+    def __init__(self, model:str, weight:int):
         self._model = model
         self._weight = weight
 
@@ -25,21 +25,21 @@ class Vehicle:
         assert new_weight >= 0, f"{new_weight} must be bigger than zero."
 
     def describe(self):
-        return f"{self.horsepower}"
+        return f"vehicle's model: {self._model}\nvehicle's weight: {self._weight}"
 
 
 class Car(Vehicle):
 
     def __init__(self, model: str, horsepower: int, weight: float, drivetrain: str):
         super().__init__(model, weight)
-        self.horsepower = horsepower
-        self.drivetrain = drivetrain
+        self.__horsepower = horsepower
+        self.__drivetrain = drivetrain
 
     def get_horsepower(self):
-        return self.horsepower
+        return self.__horsepower
 
     def set_horsepower(self, new_horsepower: int):
-        self.horsepower = new_horsepower
+        self.__horsepower = new_horsepower
 
         if not isinstance(new_horsepower, int):
             raise TypeError(f"{new_horsepower} must be an integer.")
@@ -47,10 +47,10 @@ class Car(Vehicle):
         assert new_horsepower >= 0, f"{new_horsepower} must be bigger than zero."
     
     def get_drivetrain(self):
-        return self.drivetrain
+        return self.__drivetrain
 
     def set_drivetrain(self, new_drivetrain: str):
-        self.drivetrain = new_drivetrain
+        self.__drivetrain = new_drivetrain
 
         if not isinstance(new_drivetrain, str):
             raise TypeError(f"{new_drivetrain} must be a string.")
@@ -58,11 +58,8 @@ class Car(Vehicle):
         assert new_drivetrain in ['FWD', 'RWD', 'AWD', '4WD'], f"{new_drivetrain} must be one of 'FWD', 'RWD', '4WD' or 'AWD'."
     
     def power_to_weight_ratio(self):
-        return self.horsepower / self.weight
-    
-    def reset_specs(self):
-        pass
+        return self.__horsepower / self.weight
 
     def describe(self):
-        pass
+        return f"model: {self._model}\nweight: {self._weight}\nhorsepower: {self.__horsepower}\ndrivetrain: {self.__drivetrain}"
 

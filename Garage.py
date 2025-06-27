@@ -1,4 +1,5 @@
-from ClassVehicle import Car
+from Vehicle import Car
+from Vehicle import Vehicle
 
 class Garage:
 
