@@ -1,4 +1,5 @@
-from Vehicle import Car
+from Vehicle import Car, Vehicle
+
 class Tuner:
     
     def increase_horsepower(car: Car, amount: float):

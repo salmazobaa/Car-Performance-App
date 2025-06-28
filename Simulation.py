@@ -1,5 +1,4 @@
-from Vehicle import Vehicle
-from Vehicle import Car
+from Vehicle import Vehicle, Car
 
 
 class Simulation:
