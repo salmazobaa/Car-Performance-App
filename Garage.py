@@ -18,13 +18,18 @@ class Garage:
             raise ValueError("Car not found in the garage")
 
     def list_cars(self):
-        return [car.get_model() for car in self.cars]
-    
+        print(f"Number of cars in garage: {len(self.cars)}")
+        for car in self.cars:
+            print(car.get_model())
+        
     def get_car(self, model: str):
         for car in self.cars:
             if car.get_model() == model:
+                print(f"Car found: {car.get_model()}")
                 return car
-        raise ValueError(f"Car with model {model} not found in the garage.")
+        if car.get_model() != model:
+            print(f"Car with model {model} not found in the garage.")
+        #raise ValueError(f"Car with model {model} not found in the garage.")
     
     def save_to_file(self, filename: str):
         with open(filename, 'w') as file:
@@ -38,3 +43,14 @@ class Garage:
                 model, horsepower, weight, drivetrain = line.strip().split(',')
                 car = Car(model, int(horsepower), float(weight), drivetrain)
                 self.add_car(car)
+
+# test the Garage class
+camaro = Car('camaro', 275, 3200, 'rwd')
+challenger = Car('challenger', 305, 3400, 'rwd')
+mustang = Car('mustang', 310, 3300, 'rwd')
+garage = Garage()
+garage.add_car(camaro)
+garage.add_car(challenger)
+garage.add_car(mustang)
+# garage.list_cars()
+garage.get_car('charger')
