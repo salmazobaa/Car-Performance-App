@@ -34,6 +34,11 @@ class Car(Vehicle):
         super().__init__(model, weight)
         self.__horsepower = horsepower
         self.__drivetrain = drivetrain
+        valid_drivetrains = ['FWD', 'RWD', 'AWD', '4WD']
+        drivetrain_upper = drivetrain.upper()
+        if drivetrain_upper not in valid_drivetrains:
+            raise ValueError(f"{drivetrain} must be one of {valid_drivetrains}.")
+        
 
     def get_horsepower(self):
         return self.__horsepower
@@ -47,7 +52,7 @@ class Car(Vehicle):
         assert new_horsepower >= 0, f"{new_horsepower} must be bigger than zero."
     
     def get_drivetrain(self):
-        return self.__drivetrain
+        return self.__drivetrain.upper()
 
     def set_drivetrain(self, new_drivetrain: str):
         self.__drivetrain = new_drivetrain
@@ -55,11 +60,12 @@ class Car(Vehicle):
         if not isinstance(new_drivetrain, str):
             raise TypeError(f"{new_drivetrain} must be a string.")
 
-        assert new_drivetrain in ['FWD', 'RWD', 'AWD', '4WD'], f"{new_drivetrain} must be one of 'FWD', 'RWD', '4WD' or 'AWD'."
+        assert new_drivetrain in ['FWD', 'RWD', 'AWD', '4WD'], f"{new_drivetrain} must" \
+            "be one of 'FWD', 'RWD', '4WD' or 'AWD'."
     
     def power_to_weight_ratio(self):
         return self.__horsepower / self.weight
 
     def describe(self):
-        return f"model: {self._model}\nweight: {self._weight}\nhorsepower: {self.__horsepower}\ndrivetrain: {self.__drivetrain}"
-
+        return f"model: {self._model}\nweight: {self._weight}\n" \
+            f"horsepower: {self.get_horsepower()}\ndrivetrain: {self.get_drivetrain()}"
