@@ -1,20 +1,24 @@
+from Vehicle import Vehicle
 from Vehicle import Car
+
 
 class Simulation:
 
     def zero_to_sixty(self, car: Car):
-        time = car.__horsepower / car._weight
+        time = car.get_horsepower() / car.get_weight()
         return f"0-60 mph in {time} seconds."
+        if not ininstance(car, Car):
+            raise TypeError("Expected a Car instance.")
     
     def quarter_mile_time(self, car: Car):
-        quarter_time = time / 4
+        quarter_time = (car.get_horsepower() / car.get_weight()) / 4
         return f"quarter mile time: {quarter_time} seconds."
     
     def compare(self, car1: Car, car2: Car):
-        car1_time = car1.__horsepower / car1._weight
-        car2_time = car2.__horsepower / car2._weight
+        car1_time = car1.get_horsepower / car1.get_weight
+        car2_time = car2.get_horsepower / car2.get_weight
         if car1_time > car2_time:
-            print('{car1} has a faster 0-60 time.')
+            print(f'{car1.get_model()} has a faster 0-60 time.')
         else:
-            print('{car2} has a faster 0-60 time.')
+            print(f'{car2.get_model()} has a faster 0-60 time.')
 
